@@ -1,0 +1,6 @@
+dependencies:
+     - name: sunburst
+       version: 0.0.9
+       src: htmlwidgets/lib/d3
+       script: d3.v3.min.js
+       stylesheet: sunburst.css

@@ -5,12 +5,11 @@
 #' @import htmlwidgets
 #'
 #' @export
-chord <- function(mat, color_map, width = NULL, height = NULL, elementId = NULL) {
+chord <- function(message, width = NULL, height = NULL, elementId = NULL) {
 
   # forward options using x
   x = list(
-    color_map = color_map,
-    mat = mat
+    message = message
   )
 
   # create widget
@@ -19,7 +18,7 @@ chord <- function(mat, color_map, width = NULL, height = NULL, elementId = NULL)
     x,
     width = width,
     height = height,
-    package = 'chord',
+    package = 'd3suite',
     elementId = elementId
   )
 }
@@ -42,7 +41,7 @@ chord <- function(mat, color_map, width = NULL, height = NULL, elementId = NULL)
 #'
 #' @export
 chordOutput <- function(outputId, width = '100%', height = '400px'){
-  htmlwidgets::shinyWidgetOutput(outputId, 'chord', width, height, package = 'chord')
+  htmlwidgets::shinyWidgetOutput(outputId, 'chord', width, height, package = 'd3suite')
 }
 
 #' @rdname chord-shiny

@@ -18,14 +18,14 @@ HTMLWidgets.widget({
       
       // Mapping of step names to colors.
       var colors = {
-        "4WD": '#3FA548',
-        "USA": '#00B09E',
-        "Front": '#8971B3',
-        "nonUSA": '#DFC423',
-        "Rear": '#E74341',
-        "end": "#",
-        "Yes": "#e3e3e3",
-        "No": "#D3D3D3"
+        "4WD": '#F8755D',
+        "USA": '#E58700',
+        "Front": '#DBD3D8',
+        "nonUSA": '#D8B4A0',
+        "Rear": '#00B0F6',
+        "end": "#619CFF",
+        "Yes": "#B983FF",
+        "No": "#00C0AF"
       };
       
       
@@ -34,9 +34,7 @@ HTMLWidgets.widget({
       // Total size of all segments; we set this later, after loading the data.
       var totalSize = 0; 
       
-      $(el).append('<div id="graph"></div>');
-      $("#graph").append('<div id="explanation"></div>');
-      $("#explanation").append('<span id="percentage"></span>');
+      $(el).append('<div id="graph"></div>'); 
       
       var vis = d3.select("#graph").append("svg:svg")
           .attr("width", width)
@@ -55,22 +53,16 @@ HTMLWidgets.widget({
           .innerRadius(function(d) { return Math.sqrt(d.y); })
           .outerRadius(function(d) { return Math.sqrt(d.y + d.dy); });
       
+      
 
     return {
 
       renderValue: function(x) {
          
-         // Use d3.text and d3.csv.parseRows so that we do not need to have a header
-         // row, and can receive the csv as an array of arrays.
-         /*
-         d3.text("https://raw.githubusercontent.com/yeukyul/datasets/master/visit-sequences.csv", function(text) {
-           console.log(text);
-           var csv = d3.csv.parseRows(text);
-           console.log(csv);
-           var json = buildHierarchy(csv);
-           createVisualization(json);
-         });
-         */
+         $("#graph").append('<div id="explanation" style="visibility: hidden;">' +
+                           '<div id="percentage"></div>' +
+                           x.explanation +
+                           '</div>');
          
          var csv = d3.csv.parseRows(x.data);
          var json = buildHierarchy(csv);
@@ -116,8 +108,6 @@ HTMLWidgets.widget({
          
          // Fade all but the current sequence, and show it in the breadcrumb trail.
          function mouseover(d) {
-            
-            console.log("here");
          
            var percentage = (100 * d.value / totalSize).toPrecision(3);
            var percentageString = percentage + "%";

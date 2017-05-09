@@ -2,5 +2,7 @@ dependencies:
      - name: sequence
        version: 0.0.9
        src: htmlwidgets/lib/d3
-       script: d3.v3.min.js
+       script: 
+         - d3.v3.min.js
+         - jquery-3.2.1.min.js
        stylesheet: sunburst.css

@@ -12,7 +12,8 @@
 #' @param elementId character; id assigned to the resulting widget
 #'
 #' @export
-sequence <- function(df, split_on, parse = TRUE, width = NULL, height = NULL, elementId = NULL) {
+sequence <- function(df, split_on, parse = TRUE, explanation = "of observation belongs to this category", 
+                     width = NULL, height = NULL, elementId = NULL) {
    
    if (class(df) != "data.frame") {
       stop("sunburst doesn't know how to handle non data frame object")
@@ -44,7 +45,8 @@ sequence <- function(df, split_on, parse = TRUE, width = NULL, height = NULL, el
   # forward options using x
   x = list(
     data = hierachial_df,
-    colormap = colormap
+    colormap = colormap,
+    explanation = explanation
   )
 
   # create widget

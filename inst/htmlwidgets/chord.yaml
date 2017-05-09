@@ -1,0 +1,6 @@
+dependencies:
+     - name: chord
+       version: 0.0.9
+       src: htmlwidgets/lib/d3
+       script: d3.v2.8.1.min.js
+       stylesheet: style.css

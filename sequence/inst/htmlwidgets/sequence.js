@@ -34,7 +34,8 @@ HTMLWidgets.widget({
       // Total size of all segments; we set this later, after loading the data.
       var totalSize = 0; 
       
-      $(el).append('<div id="graph"></div>'); 
+      $(el).append('<div id="sequence"></div>' + 
+                   '<div id="graph"></div>'); 
       
       var vis = d3.select("#graph").append("svg:svg")
           .attr("width", width)
@@ -172,10 +173,14 @@ HTMLWidgets.widget({
          }
          
          function initializeBreadcrumbTrail() {
+            console.log("creating breadcrumb");
+            console.log(width);
            // Add the svg area.
            var trail = d3.select("#sequence").append("svg:svg")
                .attr("width", width)
                .attr("height", 50)
+               .attr("x", 0)
+               .attr("y", 50)
                .attr("id", "trail");
            // Add the label at the end, for the percentage.
            trail.append("svg:text")
@@ -199,6 +204,8 @@ HTMLWidgets.widget({
          
          // Update the breadcrumb trail to show the current sequence and percentage.
          function updateBreadcrumbs(nodeArray, percentageString) {
+            
+          console.log("updating breadcrumb");
          
            // Data join; key function combines name and depth (= position in sequence).
            var g = d3.select("#trail")
